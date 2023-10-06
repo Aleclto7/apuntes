@@ -1,0 +1,229 @@
+/* Variables -> Guardar estilos que podamos reutilizar mas adelante evitando tanto codigo (Generalmente usado para colores, tamaño de fuentes...) */
+:root {                             /* Hace referencia al HTML del proyecto, aqui es donde se declaran las variables */
+    --primary-color: #003476;     /* Se construyen '--nombrevar:valor' */
+    --secundary-color: #b4d2f7;
+    --header-size: 4rem;
+}
+/* Codigo indispensable en todos nuestros proyectos. '*' cancelar estilos agregados por navegador y '%' en HTML para siempre tener 'rem' de 10px */
+* {                                 /* Selector universal / Generalmente usado para poner en 0 los estilos que agrega el navegador automaticamente */
+    box-sizing: border-box;         /* Las Cajas (etiquetas) mantenga tamaños que aplicamos y border, padding, margin no las hagan mas grande */
+    padding: 0;                     /* Quitar padding que agrega el navegador por defecto (Afecta los estilos de nuestros proyectos) */
+    margin: 0;                      /* Quitar margin que agrega el navegador por defecto (Afecta los estilos de nuestros proyectos) */
+}
+html {
+    font-size: 62.5%;               /* Truco!! -> Colocando HTML '62.5%' los 'rem' siempre valdran 10px. Si quieres 16px usamos 1.6rem */
+}
+
+
+
+/* Entre HTML y CSS existen Selectores que usamos para modificar su aspecto:  (Tipo, Class, Id) */
+div {                               /* 'Tipo' Se usa el nombre de la etiqueta */
+    color: black;                 /* Color letra */
+    background-color: green;      /* Para colocar solo un color de fondo */
+    background: linear-gradient();  /* Mas flexible, permite colocar mas cosas como fondo ej:'linear-gradient' -> Para color en forma de degradado */
+    width: 20px;                    /* Ancho */
+    height: 10px;                   /* Alto */
+}
+.class {                            /* 'Clase' usa "." + nombre de class / colocar estilos a travez del atributo clase */
+    /* Las etiquetas HTML son como cajas que ocupan un espacio en el navegador, estan las (inline, block, inline-block) ->  */
+    display: 'inline';              /* Una parte o trozos cortos, no aceptan 'width y height'  */
+    display: 'block';               /* Toda la pantalla de Izquieda a Derecha, aceptan 'width y height' */
+    display: 'inline-block';        /* Trozos cortos pero se posicionan uno al lado de el otro ocupando ancho de 'block', aceptan 'width y height' */
+}
+#id {                               /* 'ID' usa "#" + nombre id / Colocar estilos a travez del atributo id */
+    /* Modelo de Caja -> Modifica el espacio de las diferentes etiquetas HTML (Tamaño interno, externo, el contenido y sus bordes) */
+    margin: 10px 5px 10px 5px;      /* Espaciado externo, separa de otras etiquetas - Obtiene 4 valores 'lados' (Forma manecillas)*/
+    border: 5px solid blue;       /* Linea que define cada elemento, se compone de (tamaño, forma, color) */
+    padding: 10px;                  /* Espaciado interno, delimita el contenido del border */
+    content: 5px;                   /* Contenido etiqueta HTML que tiene width y height  */
+
+    margin-top: 10px;               /* '-top arriba', '-rigth derecha', '-left izquierda', '-bottom abajo' */
+    border-color: transparent;      /* Coloca border trasparentes, o botones tambien */
+}
+
+
+.container {
+    /* Grid = herramientea que permite hacer rejillas (grids) conformada por filas y columnas. Tambien tener en cuenta padres e hijos */
+    display: grid;                          /* Indicar que trabajaremos con Grid */
+    width: 400px;
+    height: 400px;
+    grid-template-columns: 200px 200px;     /* Crear columnas, seguido de tamaños de columnas a crear */
+    grid-template-columns: 1fr 1fr;         /* fr - Divide el tamaño del grid en las columnas que pongamos */
+    grid-template-columns: repeat(2, 1fr 1fr); /* Crear columnas colocando (cantidad y tamano que tendran) */
+    grid-template-columns: repeat(auto-fill , 240px); /* Llena el espacio con todas las columnas de 240px que quepan */
+    grid-template-rows: 1fr 1fr;            /* Colocar filas / 1fr = 1 fraccion o columna */
+    }
+.item:nth-child(1) {
+    grid-column: 2/3;                       /* Posicionar en columna, entre las lineas 1 y 2 */
+    grid-row: 2/3;                          /* Posicionar en Fila, entre las lineas 2 y 3*/
+}
+
+
+/* Pseudoclases ':' -> Define estilos de un estado (Acciones del usuario) especial de un elemento */
+.main-nav_item a:hover {            /* :hover -> Pasar el click por encima / :active -> cuando demos click */
+    background-color: white;
+}
+/* Pseudoelementos '::' -> define estilos de una parte especifica de un elemento  */
+.main-nav_item a::after {           /* afetr -> colocara lo que indiquemos depues de cada 'a' */
+    content: ' | ';
+}
+.main-nav_item a {                  /* Ser especifico -> Indica todas las etiquetas 'a' dentro de '.main-nav_item' son las que se le dara estilos */
+    color: aqua;
+}
+
+
+/* Especificidad -> Manera en que navegadores deciden que valores de una propiedad CSS son mas relevantes para un elemento y seran aplicados */
+h1 {                                /* De tipo -> es de (0.0.1) */
+    font-family: serif;
+}
+.title {                            /* De class -> (0.1.0) Especificidad mayor que 'tipo' pero menos que 'id' por lo que seguira tomando la de id */
+    font-family: monospace;
+}
+#page-title {                       /* De id -> (1.0.0) especificidad mayor por lo que toma esta tipo de letra y descarta la de 'tipo' y 'class'*/
+    font-family: Arial, Helvetica, sans-serif;      /* Muestra varias opciones por si el pc no dispone de la primera, usa la siguiente */
+}
+
+
+/* Combinators -> Permite combinar multiples selectores y crar mayor especificidad */
+h2 + p {                            /* Adjacent Siblings '+' -> Aplica estilos a etiquetas 'p' que esten cerca (debajo) de etiquetas 'h2' */
+    color: yellow;
+}
+h2 ~ p {                            /* General Siblings '~' -> Aplica estilos a etiquetas 'p' tengan un 'h2' como hermano (Dentro mismo padre)*/
+    color: blue;                  
+}
+div > p {                           /* Child '>' -> Aplica estilos a etiqueta hijo 'p' del padre directo 'div' */
+    color: red;
+}
+div p {                             /* Decendant 'Sin simbolo' -> Aplica estilos a etiquetas hijos 'p' dentro de padre 'div' (directo o indirecto)*/
+    color: red;
+}
+.tarjetas-mokepon img {             /* Combinators tambien aplica a class y id  */
+    width: 1px;
+}
+
+
+/* Medidas -> Existen Absolutas y Relativas */
+html { font-size: 62.5%;}           /* Truco!! -> Colocandole a HTML 62.5% los 'rem' siempre valdran 10px. Si quieres 16px usamos 1.6rem */
+main {
+    /* Absolutas -> No cambian sin importar el tamaño de la pantalla */
+    height: 500px;                  /* Pixeles 'px' -> Ocupara 500px, si la pantalla es mas pequeña ocasionara scrull o overflow (Mala Practica) */
+
+    /* Relativas -> Cambian dependiendo del tamaño de la pantalla */
+    width: 80%;                     /* Porcentaje '%' -> Ocupara 80% del tamaño del padre (viewport) / Font dara % tamaño letra que da navegador */
+    font-size: 1.5em;               /* Elemento 'em' -> multiplica el tamaño que le proporciona el padre (Navegador aplica 16px) 16 * 1.5 = 24 */
+    font-size: 1.6rem;              /* Elemento root 'rem' -> Se referencia de HTML y multiplica su tamaño (evita multiplicarse entre ellos) */
+    min-width: 320px;               /* 'min' Limite Reduccion, usa con width base (80%) -> Deja de reducir al llegar a 320 y tomara como tamaño */
+    max-width: 500px;               /* 'max' Limite Crecimiento -> Tamaño sera 80% hasta llegar hasta max especificado */
+    min-height: 500px;              /* No usa height base -> Ayuda solucionando overflow poque ajusta tamaño al espacio que el contenido necesite */
+    width: 100vw;                   /* Viewport Width (Anchura de ventana grafica) -> 'ancho' del area visualizacion de la pantalla */
+    width: 100vh;                   /* Viewport Height (Altura de ventana grafica)-> 'alto' del area visualizacion de la pantalla */
+    /* Direfencia: Porcentaje '%' hereda valores de su elemento padre y 'vw y vh' heredan valores de bloque inicial o ventana grafica */
+}
+
+
+/* Position -> Forma como posicionamos los Contenedores, Cajas y Etiquetas html. */
+div {
+    position: static;               /* Posicion que traen todas las etiquetas por defecto */
+    position: absolute;             /* Pierde su posicion, otra etiqueta toma su lugar y se puede superponer a otra (Puede moverse) */
+    position: relative;             /* Mantiene su posicion, se puede superponer (Pueden moverse) - Los hijos con absolute lo toman como referencia y delimitan su movimiento dentro */
+    position: fixed;                /* Para que el elemento nos siga desde que nos topamos con el */
+    position: sticky;               /* Similar a fixed pero cuando encuentra otro elemento con sticky, le da lugar a ese elemento */
+
+    /* Para mover un elemento que tenga position 'absolute' podemos usar: */
+    top: 10px;
+    bottom: 20px;
+    left: 30px;
+    right: 40px;
+}
+/* Z-index -> Permite darle mas relevancia a etiquetas para que se mustren encima de otras (Usando numeros) */
+/* Los hijos no pueden sobrepasar los Z-index de sus padres */
+.red {
+    z-index: 4;                     /* Es menor que yellow pero esta delimitado por su padre */
+}
+.blue {
+    z-index: 3;                     /* Es menor que red por lo que su hino no puede ser mas que el */
+}
+.yellow {
+    z-index: 5;                     /* Aunque tenga mas que red no lo sobrepasa por ser hijo de blue que es 3 */
+}
+
+/* Display -> Manera como podemos posicionar nuestros contenedores / no puede crecer -> No puede crecer: margin-padding (top-botton) width y height*/
+.nav li {
+    display: block;                 /* Ocupa todo el espacio (Ancho) haciendo que hermanos se tengan que posicionar debajo (Puede crecer) */
+    display: inline;                /* Ocupa solo el espacio que el contenido necesita, permite a hermanos posicionarse al lado (No puede crecer) */
+    display: inline-block;          /* Ocupa solo el espacio que el contenido necesita, permite a hermanos posicionarse al lado (Puede crecer) */
+}
+
+
+/* FlexBox: Herramienta alinear contenedores (hijos dentro de padres). Etiquetas padres (donde se coloca 'flex'), hijos (quienes se alineran) */
+.container {                        /* De forma horizonrtal: */
+    display: 'flex';                /* Indicar que trabajaremos con FlexBox en este contenedor / Por default posiciona en 'row' los hijos */
+    flex-direction: row-reverse;    /* Forma como se van a posicionar los ciclos / 'row-reverse' -> fila al revez (ultimo de primero) */
+    flex-wrap: wrap;                /* Elementos se posiciones debajo automaticamente (poco espacio) / sirve para 'overflow' al redimensionar */
+    justify-content: center;        /* Alinear contenido horizontalmente / 'center' -> centro */
+    justify-content: space-evenly;  /* Agrega espacios de mismo tamaño entre cada uno de los contenedores (hijos) */
+    gap: 10px;                      /* Añadir espaciado entre hijos */
+
+                                    /* De forma vertical: */
+    align-items: center;            /* Alinear contenedores (hijos) de forma vertical / 'center' -> centro */
+    flex-grow: 1;                   /* Crezca llenando espacio sobrante. Se va reduciendo si se redimensiona / Util para evitar 'Overflow' */
+    align-self: center;             /* Aliner un elemento (El elemento donde se coloque) que este en un contenedor con 'display: flex;' */
+}
+
+
+.container {
+    align-items: stretch;           /* Se estiran tomando la altura del 100% de su contenedor padre  */
+    align-items: baseline;          /* Se reduce tomando solo el espacio de su contenido */   
+}
+.box1 { order: 2;}                  /* Permite colocar orden para mostrar (primero al ultimo) los contenedores (hijos) */
+.box2 { color: white;}            /* Todos los contenedores que no coloquemos orden se posicionaran de primero */
+
+
+li {
+    list-style: none;               /* Estilos de lista - "none" quitar estilos */
+    margin: 0 auto;                 /* Indica que de Arriba a Abajo sera '0' y de Derecha a Izquierda se ajustara de forma automatica 'auto' */
+}
+a {
+    text-decoration: none;          /* Decoracion de texto / Quitar lineas que aparecen en los 'a' */
+}
+h1 {                                
+    color: var(--primary-color);    /* Modo de uso de las Variables -> 'var(--nombrevar)' */
+    font-weight: 700;               /* Grosor de la fuente */
+    line-height: 18.23px;           /* Especio entre lineas */
+}
+.title__button {
+    box-shadow: 0px 4px 8px 0px #59491E29;      /* Colocar sombra a contenedor / Lleva las posiciones de la sombra y color que tendra */
+    left: calc(50% - 118px);                      /* 'calc()' Hacer calculo -> 50% 'centro' - 118px mitad tamaño boton / resultado para left */
+    transform: translateY(-50%);                  /* Trasladar elemento seleccionado en su eje 'Y' -50% (Util para centrar elementos)*/
+}
+.title__button-span {
+    background-image: url('../');   /* Colocar una img como fondo / Los '..' en direccion indican que buscara fuera de carpeta donde esta el .css */
+    background-size: cover;         /* Tamaño del background. 'cover' que se adapte al tamaño del contenedor 'creo' */
+    background-repeat: no-repeat;   /* Para que Bacground-image no repita la imagen. Suele repetirla hasta llenar contenedor */
+    background-position: center;    /* Sin importar el tamaño de la imagen o conenedor, siempre se visualice el centro */
+    display: inline-block;          /* Span por default viene con 'inline' */
+}
+.containes-slide {
+    display: flex;
+    overflow-x: scroll;
+    overscroll-behavior-x: contain; /* Estos 4 permiten dar un scroll horizontal en un contenedor con diferentes tarjetas */
+    scroll-snap-type: x proximity;
+}
+.container-slide__card {
+    scroll-snap-align: center;      /* Se le debe colocar a las terjetas que el usuario podra scrollear */
+}
+
+img {
+    object-fit: cover;              /* Imagen se adapta a su tamano original para que el width y el heigh no la deformen */
+}
+
+
+
+
+
+/* Responsive Desing -> Media Queries */
+@media (min-width: 600px) {         /* Media Queries - Codigo que ejecutara cuando viewport sea < al Breakpoint. Maximo 3 Breakpoints por proyecto */
+    .class, #id, div {              /* Colocar el mismo codigo a varias etiquetas, se separan por "," */
+        width: 1px;
+    }
+}

@@ -1,0 +1,161 @@
+<!DOCTYPE html>     <!-- Indica la version de HTML (HTML5) -->
+
+<!-- Etiquetas -> '<nombre>' -->
+<html lang="es">                           <!-- Contenedor principal, donde ira el contenido del sitio web. lang="" Indica el idioma del proyecto -->
+    <head>                                              <!-- Engloba los metadatos -->
+        <meta charset="utf-8">                          <!-- 'meta' caracteristicas sobre la pagina. "utf-8' Permite caracteres especiales -->
+        <meta name="description" conten="Apuntes HTML"> <!-- Descripcion de la pagina, generalmente muestra debajo de ttitulo en buscadores -->
+        <meta name="robots" content="apuntes,follow">   <!-- Autoriza en index a robots de posicionamiento para que ayuden a colocar en busquedas -->
+        <title>Mis apuntes de HTML</title>              <!-- titulo en la pestaña del navegador -->
+        <meta name="viewport" content="width=device-widht, initial-scale=1.0"> <!-- viewport->Tamaño pantalla \\ Para que pagina se adapte a tamaño del dispositivo-->
+        
+        <link rel="stylesheet" href="./style.css">                                          <!-- Enlazar CSS \\ "rel" tipo documento cargara \ "href" (Referencia) direccion documento -->
+        <link rel="stylesheet" href="./tablet.css" media="screen and (min-width: 600px)">   <!-- Atributo 'media' implementar 'Media Queries', que ejecutara el '.css' cuando llegue al viweport especificado // Un archivo .css para cada tamaño dispositivo -->
+
+        <style></style>                                 <!-- Escribe CSS dentro del HTML / Usar mucho codigo hace cargar lenta la pagina -->
+        
+        <link href="https://fonts.googleapis.com/css2?family=Coda&family=Roboto:ital,wght@0,300;0,400;0,500;1,700&display=swap" rel="stylesheet"> <!-- Traernos tipo de letra de internet 'Google Font' a travez de link en el head (Buena Practica) -->
+    </head>
+    
+    
+    <body>                                              <!-- Elementos visibles en la pagina -->
+
+        <p style="color: aqua;"> Parrafo</p>          <!-- 'Estilos Embebidos' Inyectarle estilos a las etiquetas en forma de atributos -->
+
+        <header>                                        <!-- Etiqueta de Encabezado / Seccion superior de nuestro website-->
+            <nav></nav>                                 <!-- Barra de navegacion / Siempre dentro del header -->
+        </header>                               
+        <main>                                          <!-- "Main Area" Contenido principal de la pagina -->
+            <section>                                   <!-- Secciones  -->
+                <article>                               <!-- Articulos -->
+                </article>
+            </section>
+            <ul>                                        <!-- Unorder List / Crear una lista desordenada / Con "Puntos"-->
+                <li>Manzana</li>                        <!-- List item / Elemento de lista -->
+            </ul>
+            <ol>                                        <!-- Order List / Crear una lista "Ordenada" / Con "numeros"-->
+                <li>Fresa</li></lu>
+            </ol>
+            <figure>                                    <!-- Contenedor semanticamente correcto para almcenar imagenes 'img' y darles estilos -->
+                <img src="" alt="">                     <!-- Etiqueta imagen / src -> Direccion de imagen (Carpeta-URL) / alt -> Descripcion -->
+            </figure>
+            <figcaption>
+                <img src="" alt="" title="">            <!-- Atributo 'title' -> Muestra descripcion al hacer 'hover' en esa imagen. -->
+            </figcaption>                   <!-- Similar al atibuto alt de 'img', permite colocar descripcion 'visible' a la img -->
+            <div>
+                <table>                                 <!-- Etiquete contenero para tablas -->
+                    <tr><td></td></tr>                  <!-- 'tr' -> filas de la tabla / 'td' -> informacion de una fila -->
+                </table>
+            </div>
+
+
+            <section>
+                <video src="video" controls preload="auto"></video><!-- Etiqueta video / controls -> botones de video / preload -> cargue el video mientras carga la pagina.-->
+                <video controls preload="auto">         <!-- Quitamos "src" como atributo y colocamos "source" dentro de la etiqueta  -->
+                    <source src="video.mp4">            <!-- Asi podemos colocar varios videos, sin repetir la etiqueta <video>-->
+                    <source src="video.m4v#t=10,50">    <!-- "#t=10,20" Colocar tiempo de inicio y fin del video -->
+                </video>
+            </section>
+
+
+            <form action="">                            <!-- Indica que dentro ira un Formulario. Donde usuarios dejaran informacion -->
+                <label for="nombre">                    <!-- Colocarle texto al <input>, conectando 'for' con 'id' lo hacemos seleccionable-->
+                    <span>Cual es tu nombre?</span>     <!-- Especifica que lo que esta envolviendo sera dinamico (Cambiara a futuro) -->
+                    <input type="text" id="nombre" placeholder="Tu nombre"> <!-- placeholder -> texto de ejemplo dentro de cajita -->
+                </label>
+                <label>
+                    <spam>Calendario</spam>
+                    <input type="datetime-local" id="" name=""> <!-- Crea un input para dia, mes, año y hora todo junto  -->
+                </label>
+                <label>
+                    <spam>Correo</spam>
+                    <input type="email" autocomplete="email" required> <!-- autocomplete -> Autocompletar informacion / required -> Indicar que es campo obligatorio  -->
+                </label>
+                <input type="submit">                   <!-- Boton "Enviar", uso de forma directa en formularios para enviar la informacion -->
+            </form>
+            
+            <!-- Campo de seleccion, Scrrullear hasta encontrar la opcion a elegir -->
+            <select name="Cursos" id="" >               <!-- Etiqueta seleccion. Permite elegir 1 opcion de las que contiene (Paises, Idioma...) -->
+                <option value="JavaScript">JavaScript</option> <!-- Opciones de la etiqueta seleccion -->
+                <option value="HTML5">HTML5</option>    <!-- "value" es lo que se va a guardar para usar despues (Enviar a base de datos) -->
+                <option value="CSS3">CSS3</option>     
+                <option value="Web Standarts">Web Standarts</option>     
+            </select>
+            
+            <!-- Campo Seleccion, con posibilidad de escribir tu opcion pa ver si esta diponible  -->
+            <input list="Cursos">                       <!-- Atributo "list" hace referencia a elemento "datalist" / Viculados por mismo "id"  -->
+            <datalist id="Cursos">                      <!-- Especifica lista de opciones predefinidas para un input,Aasociado a "lits" -->
+                <option value="JavaScript"></option>    <!-- Texto dentro de option no sera visible -->
+                <option value="HTML5"></option>         <!-- Texto dentro de atributo valor para ser seleccionable y visible en la lista -->
+                <option value="CSS3"></option>
+                <option value="Web Standarts"></option>
+            </datalist>
+            <button>Enviar</button>                     <!-- Crear boton mas flexible, con nombre que queramos y funcionalidad que le coloquemos -->
+
+        </main>
+
+        <footer>                                       <!-- Pie de pagina.  -->
+        
+        <h1>Titulo 1</h1>                               <!-- Tituli, muestra el texto mas grande y en negrita / Existe desde el h1 al h6 -->
+        <a href="link">Esto es un Link</a>              <!-- Etiqueta ancla / Permite generar hipervinculos (Enlaces-Links)-->
+        <a href="link" targer="_blank">Otro Link</a>    <!-- Para que el link abra en una nueva pestaña / Mal a nivel de CEO -->
+
+        <section id="pantalla-1">                       <!-- Permite dividir las Secciones de nuestra Pagina -->
+            <h1>Primer intento de webside</h1>          <!-- Estructura tus titulos y subtitulos -->
+            <p>Primer parrafo</p>                       <!-- Crear parrafos --> 
+            <p>Hola,
+                <b>Negrita</b>,                         <!-- Texto dentro negrilla -->
+                <i>Cursiva</i>,                         <!-- Texto dentro cursiva -->
+                <u>Subrayado</u>                        <!-- Texto dentro subrayado -->
+                <br>                                    <!-- Salto de linea -->
+            </p>
+            <div>                                       <!-- Etiqueta para amarrar etiquetas - Sirve como etiqueta Padre-->
+                <p>Conoce los precios <span>i</span> </p>   <!-- Etiqueta comodin, ayudara para agregar textos o iconos mas adelante -->
+            </div>
+        </section>
+        </footer>
+
+        <script>                                        /* Etiqueta de JavaScript, dentro podemos escribir codigo JS */
+            console.log('Hello, World');
+        </script>
+        <script src="./codigo.js"> </script>            <!-- 'src' treemos un archivo que contenga el JS para ser leido por el html -->
+
+        <section id='ver-mapa'>                         <!-- Preferiblemente colocar canvas dentro de etiqueta padre -->
+            <canvas id='mapa'></canvas>                 <!-- Crea un espacio en nuestra pagina para que podamos dibujar con JS -->
+            <div>
+                <input  type="radio" name="Mascota" id="Pydos" /> <!-- Campo para obtener datos del usuario, puede ser text, number, time, etc.  -->
+                <label  for="Pydos">                    <!-- Colocarle texto al <input>, conectando 'for' con 'id' lo hacemos seleccionable-->
+                    <img src="./foto" alt="Pydos">      <!-- Agregar imagen. 'src -> direccion' y 'alt -> mostrara si imagen no cargua' -->
+                </label>
+            </div>
+            <div>
+                <button onclick="funcionMover(derecha)"></button>   <!-- Detecta click a boton, dispara lo que esta en comillas 'funcion' -->
+                <button onmousedown="mover(derecha)"></button>          <!-- Detecta cuando se esta presionando -->
+                <button onmouseup="detenerMovimiento()"></button>       <!-- Detecta cuando soltamos -->
+                <button ontouchstart="detenerMovimiento()"></button>    <!-- Detecta cuando tocamos una pantalla tactil -->
+                <button ontouchend="detenerMovimiento()"></button>      <!-- Detecta cuando soltamos una pantalla tactil -->
+            </div>
+        </section>
+
+
+        <!-- Imagenes Responsive -->
+        <div>                                           <!-- Mala practica -> 'div' tiene tamaño especifico - 'img' adaptado a ese tamaño -->
+            <img src="" alt="">                         <!-- Imagen con tamaño y peso maximo, tendra que redicirse en dispositivos pequeños-->
+        </div>
+        <picture>                                       <!-- Buena Prectica -> Etiqueta picture + img->mobile y source->img gran -->
+            <source media="(min-width:600px)" srcset="./large.png">     <!-- Mayor tamaño primero y debajo menor tamaño gradualmente -->
+            <source media="(min-width:800px)" srcset="./medium.png">    <!-- Img que cargaran en 'media' especificado (Media Queries) -->
+            <img src="./small.png" alt="Imagen de ejemplo">             <!-- Img Principal -> Para mobile debido a 'Mobile First' -->
+        </picture>
+
+        <input type="text" onchange="codigo">           <!-- onchange - Escuchador de vento. Pasa como parametro funcion JS a ejecutar -->
+        <button id="btnCal" onclick="cofigo">Selec</button>  <!-- onclick - Escuchador de vento. Pasa como parametro funcion JS a ejecutar -->
+
+        <form action="">                                <!-- Los formularios toman ultimo boton y lo transformanen en tipo submit -->
+            <input type="text">
+            <button>Resultado</button>                  <!-- Por lo que recargara la pagina y cambaira URL al intentar enviar el formulario --> 
+            <button type="button">Resultado</button>    <!-- Al especificar que no sera "submit" el formulario no lo tomara como tal --> 
+        </form> 
+
+    </body>
+</html>
