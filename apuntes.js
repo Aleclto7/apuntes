@@ -182,13 +182,32 @@ console.log(it.next().value); // Invocando next en el generator y obtendremos el
 console.log(it.next().value); // Al usar yield (que pausa la funcion en cada valor), el sigueinte next nos mostrara el valor sigueinte
 console.log(it.next().value); // Asi con cada valor que devuelva la funcion hasta que llegue al ultimo
 
-// Set - Add
+// ECMA6 - Set - Add
 // Las Estructuras de datos predominantes son Objects y Arrays. ECMA 6 introdujo 2 nuevos tipos de objetos iterables: Map (ordenan por pares clave-valor, parecido a Object) y Set (lista valores unicos, parecido a Array)
 const list = new Set(); // Indicamos que 'list' sera una lista 'Set'
 
 list.add('Item 1')  // '.add' permite agregar items a la lista set
 list.add('Item 2').add('Item 3')    // Se puede encadenar varios add
 console.log(list);
+
+// ECMA7 - Exponentials
+const value = 3 ** 4;    // Nuevo operador para obtener una potencia entre dos valores
+console.log(value);
+
+//ECMA7 - Array Includes
+let numbers = [1, 2, 3, 4, 5, 6, 7, 8];
+console.log(numbers.includes(4));   // '.includes' nos permite saber si el array incluye un valor en especifico
+
+let names = ['Oscar', 'David', 'Ana']
+console.log(names.includes('oscar'));   // Tener en cuenta mayusculas en caso de strings porque toma como otro valir
+
+
+
+
+
+
+
+
 
 
 // ----------------------------------------------------------------------------------------------------------------------------------
