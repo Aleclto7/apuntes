@@ -201,8 +201,11 @@ console.log(numbers.includes(4));   // '.includes' nos permite saber si el array
 let names = ['Oscar', 'David', 'Ana']
 console.log(names.includes('oscar'));   // Tener en cuenta mayusculas en caso de strings porque toma como otro valir
 
-
-
+// ECMA8 Object.entries - Transforma cada par 'clave-valor' del objeto en arreglos, de manera estructurada y mas legible
+// ECMA8 Object.values - Tae de un objeto y transforma solo los valores en un arreglo (array).
+const countries = {MX: 'Mexico', CO: 'Colombia', CH: 'Chile', PE: 'Peru'};
+console.log(Object.entries(countries));
+console.log(Object.values(countries));
 
 
 
