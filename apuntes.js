@@ -207,6 +207,18 @@ const countries = {MX: 'Mexico', CO: 'Colombia', CH: 'Chile', PE: 'Peru'};
 console.log(Object.entries(countries));
 console.log(Object.values(countries));
 
+//ECMA8 - String Padding - Agregar caracteres a un string si es necesario repitiendolos hasta llegar a la cantidad
+const string = 'Hello';
+
+console.log(string.padStart(7, '___')); // Inserta '___' al inicio hasta llegar a los carateres especificados '7'  
+console.log(string.padEnd(7, '___'));   // Inserta '___' al final hasta llegar a los carateres especificados '7' 
+
+//ECMA8 - Trailing commas - Es la capacidad de agregar items vacions a los arrays para futuras adiciones
+const arra = [2, 4, 7, 8, , , 10];   // Incluso se puede dejar los items vacios y agregar uno al final
+
+console.log(arra);
+console.log(arra.length);
+
 
 
 
