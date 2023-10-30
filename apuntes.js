@@ -120,7 +120,8 @@ function anotherFunction () {   // Las Promesas devuelven valores dependiendo si
 anotherFunction()       // .them y .catch son Metodos que pertenecen al objeto Promise y nos muestra el estado de la Promesa.
     .them(response => console.log(response))    // Nos muestra el estado de la promesa cuando fue 'Acepada' y devuelta por el resolve
     .them(response => console.log(response))    // Podemos crear los them que queramos y para diferentes resultados que nos de la funcion 
-    .catch(err => console.log(err));            // Nos muestra el estado de la promesa cuando fue 'Rechazada' y devuelta por el reject
+    .catch(err => console.log(err))             // Nos muestra el estado de la promesa cuando fue 'Rechazada' y devuelta por el reject
+    .finally(() => console.log('Finaly'));      // Permite tener una funcion anonima para hacer algo cuando la promesa haya terminado.
 
 // Clases - Plantillas para crear objetos con mismos atibutos y metodos pero que contengan distintos valores.
 class userList { };   // Declarando una clase 
@@ -237,6 +238,38 @@ const anotherFn = async () => { // 'async' indica que una funcion siempre devolv
 console.log('Before');  // Se imprime en consola por flujo normal del codigo
 anotherFn();    // Llama a la funcion que contiene el setTimeout por lo que no imprime nada hasta llegado el tiempo
 console.log('After');   // Se imprime en consolas
+
+// ECMA9 - Regex (RegularExpresions) - Son Patrones de busqueda y manipulacion de cadena de caracteres increiblemente potentes.
+const regex = /(\d{4})-(\d{2})-(\d{2})/;    //\d{4} -> busca un string con exactamente 4 dígitos de longitud luego viene un guión
+const matchers = regex.exec('2022-01-01'); // Por lo que la primera expresion de regex tomara "2022" por cumplir con las especificaciones.
+console.table(matchers);
+
+// ECMA9 - Spread - Sirve para crear un nuevo objeto a partir de otros.
+const user1 = {username2: 'Aleclto7', age: 23, country: 'CO'}
+const {username2, ...values } = user1;    // Al haber sacado 'username' toma '...' para los valores restantes y en este caso los guarda dentro de 'values' 
+console.log(username);
+console.log(values);
+
+// ECMA9 - Async y Async en ciclo for
+async function* anotherGenerator () {   // 'async' Indica que una funcion siempre devolvera una promesa
+    yield await Promise.resolve(1); // 'await' Hace a JS parar hasta que la funcion promesa responda pero sin detener el flujo externo
+    yield await Promise.resolve(2); // 'Yield' pausa la funcion y muestra el valor que le sigue 
+    yield await Promise.resolve(3); // Se crea una promesa pero sin validacion, directmente que retorne un valor a travez del resolve
+}
+const other = anotherGenerator();
+other.next().then(response => console.log(response.value))  // '.next' trae el valor del estado actual de la funcion en este caso
+other.next().then(response => console.log(response.value))  // '.then' trae el valor que devuelve la promesa a travez del resolve
+other.next().then(response => console.log(response.value))  // '.value' trae el valor del resolve, ya que originalmente viene un objeto
+console.log('Hello');   // Se ejecuta primero ya que 'anotherGenerator' es una funcion asincrona, detiene el flujo dentro pero no el externo.
+
+async function arrayOfNames (array) {   // La funcionalidad de iterar tambien fue agregada para los for
+    for await (let value of array) {
+        console.log(value);
+    }
+}
+const names1 = arrayOfNames(['Alexis', 'Azul', 'Burbuja']);
+console.log('After');
+
 
 
 
