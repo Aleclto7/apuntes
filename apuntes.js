@@ -270,6 +270,22 @@ async function arrayOfNames (array) {   // La funcionalidad de iterar tambien fu
 const names1 = arrayOfNames(['Alexis', 'Azul', 'Burbuja']);
 console.log('After');
 
+//ECMA10 - flat - Permite aplanar los elementos de un array, eliminando arrays internos.
+const array = [1, 2, 3, 4, 5, [2, 3, 4, 5, [6, 7, 8]]];
+console.log(array.flat(3));
+
+//ECMA10 - flatMap - Permite aplanar los elementos de un array en un nivel, pasando una funcion que mapea cada elemento.
+const arrayMap = [1, 2, 3, 4, 5];
+console.log(arrayMap.flatMap(v => [v, v * 2]));
+
+//ECMA10 - TrimStart - TrimEnd - Permite eliminas espacios en blanco al inicio y al final de algun string
+const greating1 = '               Hello World       '
+console.log(greating1.trimStart());  // Elimina espacios al inicio de un String 
+console.log(greating1.trimEnd());    // Elimina espacios al final de un String
+
+
+
+
 
 
 
