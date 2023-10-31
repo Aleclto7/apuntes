@@ -312,7 +312,17 @@ const users = {
 console.log(users.alexis.country);  // Encadenando elementos podemos acceder a uno en especifico
 console.log(users?.feli?.country);  // '?' es como se representa el optional chaining. Recomendable usar úncamente cuando probablemente un valor no exista para evitar ocultar errores.
 
+// ECMA11 - BigInt - Ayuda a manejar numeros de gran tamaño. 
+const aBigNumber = 309377309235134903n;    // Antes teniamos 'n' para menejar y saber que trabajamos estos numeros
+const anotherBN = BigInt(309377309235134903);   // Al enviar parametro de tipo entero (que tiene maximo representable) 
+console.log(aBigNumber);
+console.log(anotherBN);  // 'BigInt' recibira el numero acortado que pueda ser representable con JS.
+// La solucion para esto e pasarlo como string y 'BigInt' se encargara de convertirlo a tipo number
 
+// ECMA11 - NullIsh - Valida si el valor existe o vienen en formato 'null', en ese caso podemos asignarle algun valor
+const anotherNumber = null; // En el caso de tener un valor sera pasado en la validacion
+const validate = anotherNumber ?? 5; // En caso que sea null tomara el valor que se ligue a los '??'
+console.log(validate);
 
 
 
