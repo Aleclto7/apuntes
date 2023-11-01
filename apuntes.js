@@ -332,7 +332,19 @@ const promise3 = new Promise ((resolve, reject) => resolve('Resolve 2'))
 Promise.allSettled([promise1, promise2, promise3])  // Recibe un iterable de promesas con el cual
     .then(response => console.log(response));   // Devuelve una matriz de objetos que describe el resultado de cada promesa
 
+// ECMA11 - Global - provee funciones propias de cada lenguaje o entorno, su nombre varia dependiendo de la plataforma. 'GlobalThis' Se creo para estandarizarlos y este puede ser usado en cualquier plataforma
+console.log(window);    // Es el nombre que recibe en el navegador.
+console.log(global);    // Es el nombre que recibe en Node.
+console.log(self);      // Es el nombre que recibe en WebWorked.
+console.log(globalThis);// Devuelve la info segun el contexto donde este siendo utilizado
 
+//ECMA11 - MatchAll - Devuelve un iterable con todas las coincidencias de un string especifico a partir de la expresion regular
+const newRegex = /\b(Apple)+\b/g;
+const fruits3 = "Apple, Banana, Kiwi, Apple, Orange, etc. etc. etc.";
+
+for (const match of fruits3.matchAll(newRegex)) {    // Usamos el metodo 'MatchAll' y el metodo 'regex' o la regla que va a seguir para buscar
+    console.log(match); // Los resultados se almacenaran el match y lo imprimiremos en consola
+}
 
 // ----------------------------------------------------------------------------------------------------------------------------------
 
