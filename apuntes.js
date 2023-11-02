@@ -346,6 +346,24 @@ for (const match of fruits3.matchAll(newRegex)) {    // Usamos el metodo 'MatchA
     console.log(match); // Los resultados se almacenaran el match y lo imprimiremos en consola
 }
 
+//ECMA11 - Dynamic Import - Permite manejar modulos dinamicamente. Llamar a ellos cuando se vayan a utilizar y no al iniciar la app. Haciendo la pagina mas rapida ya que tiene que cargar menos recursos
+export function hello () {  // Este sera el modulo, que se encontrara en un archivo aparte de nuestra PC
+    console.log('Hola Mundo');
+}
+// Este sera el codigo donde llamaremos al Modulo de manera dinamica 'Solo cuando se vaya a utilizar'
+const button = document.getElementById('btn');
+
+button.addEventListener('click', async function () {    // Creamos una funcion anonima que ejecutara el import
+    const module = await import ('./module.js'); // El 'import' almanecara el resultado del modulo en la variable.
+    console.log(module);    // Que despues sera ejecutada en consola
+    module.hello();
+})
+
+
+
+
+
+
 // ----------------------------------------------------------------------------------------------------------------------------------
 
 // Tipos de datos 
