@@ -359,7 +359,15 @@ button.addEventListener('click', async function () {    // Creamos una funcion a
     module.hello();
 })
 
+//ECMA12 - Numeric Separators - Ayuda visual en los casos donde tenemos valores numericos muy grandes.
+const numericValue = 100_000_000_000_000;  // Con '_' los separamos para poder entenderlos mejor visualmente. 
 
+console.log(numericValue); // No afectara a la hora de trabajar con ellos.
+
+//ECMA12 - Replace All - Filtro para buscar y reemplazar textos
+const string1 = 'JavaScript es un maravilloso lenguaje de programacion'
+const replacedString = string1.replace('JavaScript', 'TypeScript') // 'replace' busca y remplaza el primer valor por el segundo valor ingresado
+console.log(replacedString);    
 
 
 
