@@ -380,6 +380,17 @@ console.log(replacedString);
 Promise.any([promise1, promise2, promise3]) // Captura la respuesta de la primera promesa que se ejecute de manera satisfactoria.
     .then(response => console.log(response));   // Si es reject la ignora y devuelve el primer resolve
 
+//ECMA 13 - At - Recibe un valor numerico y devuelve el elemento en esa posicion
+const arrayApi = ['one', 'two', 'three', 'four', 'five', 'six']
+console.log(arrayApi.length(-1));  // Anteriormente esta era la manera de llegar al ultimo elemento sin conocer su longitud
+console.log(arrayApi.at(-1));  // Los valores negativos empiezan a contar desde el ultimo elemento del array 
+// Mayormente usado en APIs donde no sabemos su tamaño
+
+
+
+
+
+
 
 // ----------------------------------------------------------------------------------------------------------------------------------
 
