@@ -142,6 +142,9 @@ class User {
     greating() {
         return `${this.speak} ${this.name}!`
     }
+    #private() {    // ECMA 12 - Metodos Privados - '#' Permite que los metodos solo puedan ser accedidos desde la misma clase
+        return 'Este es un metodo privado'
+    }
     // Setters y Getters
     get uAge() {    // 'Get' Permite acceder a leer al atributo de un objeto
         return this.age;
@@ -150,7 +153,7 @@ class User {
         this.age = n;
     }
 }
-const alexis7 = new User ();    // 'new' Crea una instancia de la clase 'user'. Se crea el objeto 'alexis7' a travez de la clase 'User' 
+const alexis7 = new User ('Alexs, 23');    // 'new' Crea una instancia de la clase 'user'. Se crea el objeto 'alexis7' a travez de la clase 'User' 
 console.log(alexis7.greating());    // Accedemos al metodo 'greating' del objeto creado y se ejecuta el codigo dentro de dicha funcion
 
 const bebeloper1 = new User ('Eduardo', 15);    // Creamos otra instancia con parametros 'name, age' que se procesaran por constructor
@@ -369,7 +372,13 @@ const string1 = 'JavaScript es un maravilloso lenguaje de programacion'
 const replacedString = string1.replace('JavaScript', 'TypeScript') // 'replace' busca y remplaza el primer valor por el segundo valor ingresado
 console.log(replacedString);    
 
+// ECMA12 - Promise Any - Captura la respuesta de la primera promesa que se ejecute de manera satisfactoria.
+// const promise1 = new Promise ((resolve, reject) => reject('Reject')) 
+// const promise2 = new Promise ((resolve, reject) => resolve('resolve'))
+// const promise3 = new Promise ((resolve, reject) => resolve('Resolve 2'))
 
+Promise.any([promise1, promise2, promise3]) // Captura la respuesta de la primera promesa que se ejecute de manera satisfactoria.
+    .then(response => console.log(response));   // Si es reject la ignora y devuelve el primer resolve
 
 
 // ----------------------------------------------------------------------------------------------------------------------------------
