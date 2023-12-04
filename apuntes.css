@@ -63,6 +63,12 @@ div {                               /* 'Tipo' Se usa el nombre de la etiqueta */
 .main-nav_item a:hover {            /* :hover -> Pasar el click por encima / :active -> cuando demos click */
     background-color: white;
 }
+.ratings__label:hover > p {         /* > p -> Ponerle estilos a los hijos cuando se le haga hover al padre */
+    color: var(--white);
+}
+.ratings__imput:checked + label {   /* Estilos para casillas que pueden ser marcadas como ratio, checkbox, option */
+    background-color: var(--orange);
+}
 /* Pseudoelementos '::' -> define estilos de una parte especifica de un elemento  */
 .main-nav_item a::after {           /* afetr -> colocara lo que indiquemos depues de cada 'a' */
     content: ' | ';
@@ -218,8 +224,44 @@ img {
 }
 
 
-
-
+/* Animaciones */
+.box {  /* Orden de valores que podemos aplicar en la Propiedad de atajo */
+    animation-name: name-animation; /* Nombre de la animacion que se usara (la creada en '@keyframes') */
+    animation-duration: 5s; /* Duracion de la animacion (tiempo) */
+    animation-timing-function: linear;  /* Funcion de tiempo */
+    animation-delay: 2; /* Tiempo que tardara la animacion en arrancar */
+    animation-iteration-count: infinite; /* Contador de iteraciones (Cuantas veces realizara la animacion) */
+    animation-direction: alternate;  /* Direccion de animacion (0% -> 50% -> 100%) 'alternate' inicio al final y final al inicio*/
+    animation-fill-mode: forwards;  /* Como termina la animacion. 'forward' hace que termine quedandose en estado final y no el por defecto*/
+    animation-play-state: running;  /* Estado actual de iteracion. Ejecutandose o Pausada. Mas util de la mano de JavaScript */
+}
+.box:hover {
+    animation-play-state: paused;  /* Pausa la animacion. Solo cuando se pasa el click por encima */
+}
+.box {  /* Encadenando animaciones Animaciones */
+    animation: 
+    multicolor 5s linear infinite alternate     /* Propiedad atajo (Aplicar en una propiedad todos la valores que tendra la animacion */
+    move-box 5s linear infinite alternate 5s;   /* Deben llevar un orden especifico. 'El que esta indicado en el 1er selector .box' */ 
+}
+@keyframes move-box {  /* From y to se usa para tener 2 estados */
+    from {  /* Inicia con estos valores*/
+        transform: translateX(0);
+    }
+    to {    /* Termina con estos valores y vuelve a los valores por defecto*/
+        transform: translateX(200px);
+    }
+}
+@keyframes multicolor { /* Para mas estados se utiliza "%" que divide 'animation-duration' en los estados que apliquemos */
+    0% {    /* Inicia */
+        background: indigo;
+    }
+    50% {   /* Mitad */
+        background: aqua;
+    }
+    100% {  /* Termina */
+        background: yellowgreen;
+    }
+}
 
 /* Responsive Desing -> Media Queries */
 @media (min-width: 600px) {         /* Media Queries - Codigo que ejecutara cuando viewport sea < al Breakpoint. Maximo 3 Breakpoints por proyecto */
