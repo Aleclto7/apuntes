@@ -1,6 +1,4 @@
-// ECMAscript 6 - Cambios con gran actualizacion (2015)
-
-// ECMA6 - Let - Const y Arrow Functions
+// ECMA6 (2015) - Let - Const y Arrow Functions
 var lastname = 'Alexis'     // Declarar y asignar una variable
 lastname = 'Eduardo'        // Reasignar una variable
 console.log(lastname);
@@ -31,11 +29,9 @@ fruits();
 function square (num) {     // Forma con la funcion normal
     return num * num;
 }
-
 const square = (num) => {   // Se puede utilizar let var const, pero al ser una funcion se recomienda const
     return num * num;
 }
-
 const square = num => num * num; // Con solo un argumento podemos dejar de lado los parentesis, las llaves y el return. 
 
 // ECMA6 - Strings
@@ -389,9 +385,6 @@ console.log(arrayApi.at(-1));  // Los valores negativos empiezan a contar desde 
 
 
 
-
-
-
 // ----------------------------------------------------------------------------------------------------------------------------------
 
 // Tipos de datos 
@@ -435,19 +428,14 @@ var miFuncion = function (a, b) {                   // Los parametros (a, b) per
 }
 miFuncion();                                        // Como se invocan las funciones, para que inicie los procesos que tiene dentro
 
-// Funciones de tipo flecha / funciones flecha o Arrow Functions
-// Alternativa a una funcion con una forma mas amigable de trabajar y una sintaxis mas entendible
-
+// Funciones flecha o Arrow Functions - Alternativa a una funcion, con una forma mas amigable de trabajar y una sintaxis mas entendible
 function square (num) {     // Forma con la funcion normal
     return num * num;
 }
-
 const square = (num) => {   // Se puede utilizar let var const, pero al ser una funcion se recomienda const
     return num * num;
 }
-
 const square = num => num * num; // Con solo un argumento podemos dejar de lado los parentesis, las llaves y el return. 
-
 
 // Operadores - Aritmeticos, Asignacion, Comparacion
 var a = 1;                                          // '=' Asigna un valor a la variable
@@ -459,7 +447,6 @@ a && b;                                             // '&&' Si ambos son iguales
 a || b ;                                            // '||' Si alguno de los 2 es verdadero
 a ++;                                               // Icrementa 1 al valor de alguna variable 
 a +=5;                                              // Incremente la cantidad que indiquemos al valor de la variable
-
 
 // Condicionales - Reglas para validar si algo es verdadero o falzo y generar algun valor con su resultado
 if (condicion) {                                    // Si la condicion () se es verdadera se ejeuta el codigo entre llaves {}
@@ -487,7 +474,6 @@ switch (condicion) {                                // Condicional que funciona 
         console.log('no se ejecuta ninguno');
 }
 
-
 // Array - Forga de generar una estructura de datos que permita guardar ciertos valores
 var frutas = ['Manzana', 'Platano', 'Cereza', 'Fresa'];
 var longitud = frutas.length;                       // Para ver la longitud de el array
@@ -498,17 +484,14 @@ var nuevaLongitud = frutas.unshift('Durazno')       // Agregar un elementos al i
 var borrarFruta = frutas.shift;                     // Elimina elemento al inicio del Array
 var posicion = frutas.indexOf('Cereza');            // Devuelve la posicion en la que esta 'Cereza' dentro del array
 
-
 // Loops - Forma que tenemos de hacer que una tarea se repita sin tener que hacerlo de manera manual
 for (let i; i < 10; i++) {                          // Crea variable 'i'; coloca condicion; sumamos a 'i' para que bucle ocurra.
     console.log(i);                                 // Codigo que se ejecutara las veces que indique el forS
 }
-
 for (elemento of array) {                           // Variacion del For / Se utiliza para recorrer los valores dentro de un Array
     console.log(elemento);                          // Variable toma el valor del elemento del array en el loop que se encuentre.
 }
 for (elemento in array) {                           // Variacion del For / Devuelve el indice de un Array
-
 }
 
 while(estudiantes.length > 0) {                     // A diferencia de For / Este no se detiene mientras la condicion sea True.
@@ -537,7 +520,6 @@ function auto(marca, modelo, annio) {               // Funcion que tendra como p
     this.annio = annio;                             // Seran almacenados en las propiedades de ese objeto
 }
 var autoNuevo = new auto("Tesla", "Model 3", 2020)  // Especificar que se va a construir una nueva instancia, seguida la funcion y parametros
-
 
 // Metodos de Arrays - Existen metodos de Array para recorrer, devolver valores o un array con nuevos resultados
 var articulos = [                                   // Se puede crean un Array con objetos dentro
@@ -572,10 +554,12 @@ var artBar = articulos.some(function (articulo) {
 
 
 function presentacion(name, lastname, nickname) {
-
     console.log("Mi nombre es "  + name + " " + lastname + ", pero prefiero que me digas " + nickname + ".");
-    
     }
+
+
+
+
 
 // ---------------------------------------------------------------------------------------------------------------------------------------
 // Maneras de Leer HTML desde el JavaScript 
@@ -601,6 +585,7 @@ h1.classList.remove('violeta')                      // classList.remove - Elimin
 h1.classList.toggle('violeta')                      // classList.toggle - Elimina o agrega la clase dependiendo de si existe o no.
 h1.classList.contains('violeta')                    // classList.contains - Devuelve true - false dependiendo si existe la clase que indicamos
 imput.value = '456'                                 // Con atributos de imputs se puede accedes directamente con '.' y nombre atributo
+document.querySelector('.icon_1').src = object[0].icon; // Acceder directamente a la propiedad src de la etiqueta
 
 const img = document.createElement('img');          // createElement - Crear una nueva etiqueta en el HTML
 img.setAttribute ('src', 'https://veterinariaelcountry.com/wp-content/uploads/2022/08/JUGUETE-VINILO-SAPITO.jpg')   // Creamos atributo src y agregamos link que tendra la img
@@ -611,8 +596,6 @@ boton.addEventListener('evento','btnOnClick');      // Se pasa como parametro el
 function sumarImputValues(event) {                  // Formulario manda parametro como argumento, podemos usar para evitar recarga de pagina
     event.preventDefault();                         // Evita recarga pagina en eventos submit de formulario. A travez del evento que recibe como argumento en function
 }
-
-
 
 alert("hola mundo")                                  // Dispara una alerta
 let nombre                                           // Declarar una variable vacia o global que usaremos mas adelante
@@ -632,8 +615,11 @@ id.innerHTML += estructuraHTML                       // Suma el template literar
 
 console.log(window.innerWidth)                       // Nos devuelve el ancho de la pantalla, con 'Height el Alto
 
-//--------------------------------------------------------------------------------------------------------------------------------------------
 
+
+
+
+//--------------------------------------------------------------------------------------------------------------------------------------------
 // Array, Class, Object
 
 let animales = []                                    // 'Array' Tipo de variable que puede almacenar diferentes valores de manera ordenada
@@ -665,8 +651,10 @@ let gato = new Animal ('Kity', 1, 2, 0, 5)           /* Entre parentesis sus pro
 animales.push(perro, gato)                           // Inyecta un valor en el arreglo donde la hayas invocado
 /* El uso de las 3 (Array, Class, Objeto) Nos va a ayudar mucho con codigo mas complejo */ 
 
-//-------------------------------------------------------------------------------------------------------------------------------------------
 
+
+
+//-------------------------------------------------------------------------------------------------------------------------------------------
 // Condicionales                                        Si la condicion (…) se cumple
 
 if (jugador == 'piedra' && Enemigo == 'tijera') {    // Doble '==' significa comparacion, '=' significa asignacion // && Operador 'y' 
@@ -685,9 +673,11 @@ switch (event.key) {                                 // Condicional. Si 'event.k
 
 
     
-//-------------------------------------------------------------------------------------------------------------------------------------------
 
-// Canvas
+
+
+//-------------------------------------------------------------------------------------------------------------------------------------------
+// Canvas - Etiqueta de dibujo. Fuciona como un eje de cordenadas pero representado de forma diferente
 
 const idMapa = getElementById('mapa')               // Traemos canvas a una variable, pero para poder dibujar
 const lienzo = idMapa.getContext('2d')              // Almacenamos el canvas en una variable nueva llamando al contexto '2d'
@@ -703,10 +693,59 @@ lienzo.clearRect(x, y, x, y)                        // Limpia el Canvas. Se le i
 intervalo = setInterval(pintarPersonaje, 50)        // Llama a una funcion 'pintarPersonaje' contantemente en el lapso de tiempo que se le coloque
 clearInterval(intervalo)                            // Hace que se detenga el ciclo de estarse ejecutando constantemente
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+//------------------------------------------------------------------------------------------------------------------------------------------
+// Trabajando con JSON // Es el Estandar de intercambio y almacenamiento de datos en formato Objetos. Comunmente usado entre cliente-servidor
+const requestURL = './data.json'; // Almacenando la URL del json en una variables
+const request = new XMLHttpRequest(); // Instancia de solicitud desde el constructor 'XMLHttpRequest()' usando 'new'
+request.open('GET', requestURL);    // Abriendo nueva solicitud utilizando el metodo 'open'
+request.responseType = 'json'   //  Los datos Json se reciben como string. Usando 'responseType'
+request.send();
+request.onload = function () {
+    const objectJson = request.response;
+
+    printName(objectJson)
+};
+
+// Fetch-Them - Traer info a travez de una API/Objeto JSON
+fetch("https://rickandmortyapi.com/api/character")  // Capturar informacion de una API "URL de API"
+.them((resp) => resp.json())    // Tomar respuesta 'resp' de API (los .json se envian en string) y convertirla en formato .json
+.them((data) => {  // 'data' representa lo que era 'resp' pero pasada a formato JSON
+    console.log(data.results);  
+});
+
+// Async-Await - Alternativa a '.them', Hacer codigo mas limpio // Try-Catch - Intentar ejecutar y si falla, mostrar error sin danar codigo
+const fetchNasa = async () => {
+    try {
+        const resp = await fetch('https://api.nasa.gov/planetary/apod?api_key=Xwh5MmPFt4skWrxJ17Dk7FE0Yda1gtX5e0a6xOix');
+        const data = resp.json();   // Misma forma pero implementada con variables. Forma de hacerlo en async Functions
+
+        const spaceInfo = document.createElement('div');
+        spaceInfo.innerHTML = /* Con Template Literals podemos crear toda una estructura html, sin necesidad de crea etiqueta por etiqueta */
+        `
+    <img src='${data.img}'/>
+    <h4>${data.title}</h4>
+    <p>${data.explanation}</p>
+        `;
+        infoNasa.append(spaceInfo)  // Adjuntando la estructura creada a la etiqueta HTML contenedora
+    } catch(err) {  // Si no funciona, captura y muetra el (err) sin danar todo el codigo y detener el flujo del mismo
+        console.log(err);   // Mostramos en consola para enteder donde esta el error
+    }
+}
+
+
+
+
+
+
+
+
 
 // Funciones, Peticiones al Servidor
-
 botones.querySelectionAll('BAtaque')                // Toma los elementos con mismo algo (id) y los almacena donde se invoco 'botones' 
 botones.forEach((boton) => {                        // Itera pos los elementos de un Array y por cada uno ejecuta una funcion
     boton.addEventListener('click', (e) => {        // (e) Significa evento mismo, el evento que esta ocurriendo en ese momento (PointerEvent)
@@ -766,11 +805,21 @@ function enviarPosicion (x, y) {
 }
 
 
+// Objeto Json - Estructura de los JSON. Generalmente es como viene la info en las APIs
+[                                   // En caso que tenga mas de un objeto se pone entre [] para hacerlo un 'array de objetos'
+    {
+        'name': 'Luke Skywalker',   // Separados por ',' los pares (clave valor)
+        'id': 1                     // El nombre de la clave debe ir entre comillas
+    },                              // Al ser mas de un objeto se debe separar por ','
+    {
+        'name': 'Leia Skywalker',
+        'id': 2
+    }
+]
 
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
 
-
+//-------------------------------------------------------------------------------------------------------------------------------------------
 //SERVIDOR
 //Para trabajar con una libreria, debemos descargarla con NPM y almacenarla en una variable
 const express = require('express')                      // 'require' nos permite trabajar con las librerias que descargamos con NPM
