@@ -161,7 +161,7 @@ div {
 }
 
 
-/* FlexBox: Herramienta alinear contenedores (hijos dentro de padres). Etiquetas padres (donde se coloca 'flex'), hijos (quienes se alineran) */
+/* FlexBox: Herramienta alinear contenedores de manera bidimensional (Filas o columnas por separado)*/
 .container {                        /* De forma horizonrtal: */
     display: 'flex';                /* Indicar que trabajaremos con FlexBox en este contenedor / Por default posiciona en 'row' los hijos */
     flex-direction: row-reverse;    /* Forma como se van a posicionar los ciclos / 'row-reverse' -> fila al revez (ultimo de primero) */
@@ -176,13 +176,76 @@ div {
     align-self: center;             /* Aliner un elemento (El elemento donde se coloque) que este en un contenedor con 'display: flex;' */
 }
 
-
 .container {
     align-items: stretch;           /* Se estiran tomando la altura del 100% de su contenedor padre  */
     align-items: baseline;          /* Se reduce tomando solo el espacio de su contenido */   
 }
 .box1 { order: 2;}                  /* Permite colocar orden para mostrar (primero al ultimo) los contenedores (hijos) */
 .box2 { color: white;}            /* Todos los contenedores que no coloquemos orden se posicionaran de primero */
+
+
+/* CSS Grid: Alinear contenedores de manera tridimensional (Filas y columnas en conjunto) 'https://www.youtube.com/watch?v=iTjkiI8QQsM'*/
+.container {
+    display: grid;
+    grid-template-columns: auto 20% 50px;/* Columnas que tendra la cuadricula. Se indica el tamano que tendra cada una*/
+    grid-template-rows: 2fr 4fr 1fr;    /* Filas de la cuadricula. 'fr' fracciones: Divide el tamano del contenedor de manera proporcional */
+    grid-auto-rows: 200px;   /* Poner tamano predeterminado que tendran las filas que se hallan generado automaticamente */
+    grid-template-rows: repeat(3, 100px) repeat(2, 25px 50px);/* repeat crea columnas con mismo tamano repetidas veces. Tambien 2 valores */
+    grid-template-columns: minmax(100px, 1fr) 1fr 1fr;  /* minmax - Tamano minimo seguido del tamano que tendra si se le permite crecer*/
+    
+    /* Manera de hacer redimension de cards como 'https://kingsleague.pro/equipos/' al hacer mas chico la ventana */
+    grid-template-columns: repeat(  /* Alternativa a MeadiaQueries / Repetimos 'autofill' las veces que permita el tamano del contenedor */
+        /* auto-fit, Ajusta cuadriculas para que rellene todo el espacio del contenedor. Ideal para cuando hay pocos elementos */
+        auto-fill,  /* Deja espacios vacios y cuando detecta que hay un ancho suficiente (400px), incorpora otra columna (200px) */
+        minmax(200px, 1fr)  /* Cuadriculas de minimo 200px y maximo una fraccion */
+    );
+    column-gap: 2rem;   /* Separacion entre las columnas / NO se utiliza margin-padding para grid */
+    row-gap: 3rem;      /* Separacion entre filas */
+    gap: 2rem 3rem ;    /* Separacion de filas y columnas en una sola propiedad / funciona un solo valor tanto para filas como columnas */
+}
+.container:first-child { /* Util para bentos - Se puede poner donde queramos, incluso superponerlos, ej:con hover muestre elemento de atras */
+    grid-column-start: 1;   /* Posicion en columna donde comenzara el elemento en el grid */
+    grid-column-end: 3;     /* Posicion en columna donde terminara el elemento en el grid */
+    grid-row-start: 1;      /* Posicion en fila donde comenzara el elemento en el grid */
+    grid-row-end: 2;        /* Posicion en fila donde terminara el elemento en el grid */
+    grid-row-start: span 2; /* Espacio del grid que ocupara el elemento / En este caso serian 2 que equivale a 'start 1' y 'end 2' */
+    grid-column: 2/3;       /* Poner en una propiedad donde empieza y donde termina el elemento en el grid -  */
+}
+
+/* Grid Areas - Posicionar los elementos en el grid de manera mas visual y legible */
+.container {    
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 35px 1fr 100px;
+    min-height: 100vh;
+    grid-template-areas:    /* Nos permite crear una maqueta visual de como se posicionaran los elementos, usando los 'grid-area' */
+    'header header header'      /* Se pondra 'header' en los tres espacios de la primera columna */
+    'sidebar content content'   /* sidebar a la izquierda y content en los 2 restantes*/
+    'footer footer footer'      /* Footer en los tres inferiores */
+    ;
+    justify-content: center; /* Alinear horizontalemte el grid general */
+    align-content: center;   /* Alinear horizontalemte el grid general */
+
+    justify-items: stretch;  /* Alinea horizontalmente los elementos del grid */
+    align-items: stretch;    /* Alinea verticalmente los elementos del grid */
+}
+.container:nth-child(1) {
+    align-self: center;     /* Alinearse a si mismo - Alinear el elemento en cuestion */
+    grid-area: header;      /* A cada elemento se le coloca un nombre descriptivo / header - sidebar - content - footer...*/
+}
+.container:nth-child(2) {
+    grid-area: sidebar;     /*  Con el que despues usaremos para posicionar cada uno y crear el layout */
+}
+@media (width < 500) {      /* Se puede poner Mqueries con operador como en JavaScript */
+    .container {
+        grid-template-areas:        /* De esta manera podemos cambian las posiciones en diferentes resoluciones sin codigo tan complejo */
+        'header header sidebar'
+        'content content content'
+        'footer footer footer'      
+        ;
+    }
+}
+
 
 
 li {
