@@ -1,27 +1,26 @@
 // ECMA6 (2015) - Let - Const y Arrow Functions
-var lastname = 'Alexis'     // Declarar y asignar una variable
-lastname = 'Eduardo'        // Reasignar una variable
-console.log(lastname);
+// var lastname;            // Se veria de esta manera la forma en que JS declara las var.
+var lastname = 'Alexis'     // JS al usar var, declara la variable al comienzo de todo.
+lastname = 'Eduardo'        // var permite reasignar una variable. Se puede acceder de Manera global
 
-let fruit = 'Apple';
-fruit = 'Kiwi'              // let tambien permite reasignar
-console.log(fruit);
+let fruit = 'Apple';        // Declarar y asignar una variable
+fruit = 'Kiwi'              // let tambien permite reasignar. Se Accede dentro del bloque donde fue declarada
 
-const animal = "Dog";
-animal = "Cat";             // const no permite reasignar 
-console.log(animal);
+const animal = "Dog";       // 
+animal = "Cat";             // const no permite reasignar. Se Accede dentro del bloque donde fue declarada
 
-const fruits = () => {
-    if (true) {
-        var fruit1 = "Apple"    // Function scope - Se puede acceder de manera global
-        let fruit2 = 'Kiwi'     // Function block - Se Accede dentro del bloque donde fue declarada
-        const fruit3 = 'Banana' // Function block 
-    }
-    console.log(fruit1);        // Puede acceder
-    console.log(fruit2);        // No puede acceder desde fuera del bloque deonde se declaro
-    console.log(fruit3);        // No puede acceder desde fuera del bloque deonde se declaro
-} 
-fruits();
+
+//Funciones (Que se DECLARAN con la palabra reservada de Function) Tambien son Clases en JS (Clases basadas en Prototipos)
+function Fn () {                
+//  {prop: 'propiedad'}        // Asi seria el objeto literal que crea 'new' donde se almacenaran las propiedades que asigenmos con 'this'
+    this.prop = 'propiedad';    // Las Funciones en JS tiene un contexto de 'this'
+    return 'Hola Mundo';        // Al haber llamado a la funcion con 'New' el return es ignorado.
+    return  this;               // Por lo que en realidad en el fondo retorna de manera implicita el 'this'
+}
+const r = new Fn()              // Usar New antes de llamar a una funcion, crea una INSTANCIA 'objeto literal' de esta misma.
+console.log(r);                 // Este objeto literal empieza a guardar todas las propiedades que se le asignen a travez de 'this'
+// INSTANCIA: Acción de crear un nuevo objeto basado en una clase particular.
+
 
 // ECMA6 - Arrow Functions, Funciones de tipo flecha o funciones flecha
 // Alternativa a una funcion con una forma mas amigable de trabajar y una sintaxis mas entendible
@@ -33,6 +32,18 @@ const square = (num) => {   // Se puede utilizar let var const, pero al ser una 
     return num * num;
 }
 const square = num => num * num; // Con solo un argumento podemos dejar de lado los parentesis, las llaves y el return. 
+
+
+console.log(this);
+const fatFn = () => { // Las Fat arrow function no tienen contexto de this! El this que utiliza es el del scope global
+    this.prop = 'lala'
+}
+const r1 = fatFn()
+console.log(this);
+
+const fnR = () => 2         // Al omitir las llaves la arrown function hace un return implicito.
+console.log(fnR());         // Dando como resultao el '2'
+
 
 // ECMA6 - Strings
 let hello = 'Hello';
@@ -157,17 +168,29 @@ console.log(bebeloper1.uAge);   // Accedemos al get que nos muestra el atributo
 console.log(bebeloper1.uAge = 20);  // Al asignarle nuevo valor y modificarlo, accedemos al 'set' que permite hacer el cambio
 
 
+//! MODULOS
 // ECMA6 - Modulos: Manera de importar y acceder a la logica de un archivo para usarla en nuestro codigo.
-// Este sera el modulo, que se encontrara en un archivo aparte de nuestra PC
-const greating = () => {
-    console.log('Hello');
-}
-export default hello;   // Con 'Export' permitimos que se accesa desde fuera a la funcion a travez del nombre 'hello'
+// Este sera el modulo, que se encontrara en un archivo './modulo.js' en otro lado de nuestra PC 
+const chanchosFelices = ['chancho1', 'chancho2', 'chancho3']
+export const chTristes = ['triste1', 'triste2']   // 'export' al inicio permite que pueda ser importado llamandolo entre llaves '{}'
+export const otrosCh = []
 
-// Este sera el codigo donde sera llamado el modulo
-import {greating} from "./module.js" // 'import' para importar la logica llamando al nombre, con '{}' si es una funcion y con direccion
-greating();     // Ya solo nos queda usar el codigo importado.
-// Recordar agregar "type": "module" a 'package.json' para que nos permita trabajar con modulos y poner la extencion .js a la direccion
+const fn1 = () => {                               // Tambien podemos exportar funciones
+    console.log('Soy la funcion 1');
+}
+
+export {chTristes, otrosCh, fn1}// Tambien se puede exportar en conjunto despues de ser declaradas.
+export default chanchosFelices; // 'Export default' es a lo que se accede por defecto cuando sea importado el modulo.
+
+
+// Este sera el codigo (en otro archivo) donde sera llamado el modulo
+// Fuera de llaves lo que fue exportado por defecto. Entre llaves {chTristes} invocamos el array que tiene el export cuando se declaro. 
+import chanchosFelices, {chTristes, otrosCh, fn1} from "./module.mjs"
+console.log(chanchosFelices, chTristes, otrosCh);
+fn1()
+// Si tenemos un package.json y especificamos el uso de modulos, no hace falta que pongamos la extension .mjs al la direccion del 'from'
+
+
 
 
 // ECMA6 - Generadores - Alternativa Iterador personalizado. Proceso que puede pausarce, reanudarse y producir varios valores.

@@ -14,7 +14,10 @@ html {
     font-size: 62.5%;               /* Truco!! -> Colocando HTML '62.5%' los 'rem' siempre valdran 10px. Si quieres 16px usamos 1.6rem */
 }
 
-
+/* Textos y Alineaciones - https://lenguajecss.com/css/fuentes-y-tipografias/textos-y-alineaciones/ */
+p {
+    letter-spacing: 0.2rem;         /* Espaciado entre letras (interletraje o traking) */
+}
 
 /* Entre HTML y CSS existen Selectores que usamos para modificar su aspecto:  (Tipo, Class, Id) */
 div {                               /* 'Tipo' Se usa el nombre de la etiqueta */
