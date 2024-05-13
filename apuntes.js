@@ -22,7 +22,7 @@ console.log(r);                 // Este objeto literal empieza a guardar todas l
 // INSTANCIA: Acción de crear un nuevo objeto basado en una clase particular.
 
 
-// ECMA6 - Arrow Functions, Funciones de tipo flecha o funciones flecha
+//! ECMA6 - Arrow Functions, Funciones de tipo flecha o funciones flecha
 // Alternativa a una funcion con una forma mas amigable de trabajar y una sintaxis mas entendible
 
 function square (num) {     // Forma con la funcion normal
@@ -130,13 +130,13 @@ anotherFunction()       // .them y .catch son Metodos que pertenecen al objeto P
     .catch(err => console.log(err))             // Nos muestra el estado de la promesa cuando fue 'Rechazada' y devuelta por el reject
     .finally(() => console.log('Finaly'));      // Permite tener una funcion anonima para hacer algo cuando la promesa haya terminado.
 
-// Clases - Plantillas para crear objetos con mismos atibutos y metodos pero que contengan distintos valores.
+//! Clases - Plantillas para crear objetos con mismos atibutos y metodos pero que contengan distintos valores.
 class userList { };   // Declarando una clase 
 const user22 = new userList();  // Instancia de una clase. Instancia = Accion de crear un nuevo objeto basado en una clase en particular
 
 class User {
     // Constructor = Metodo especial para crear e inicializar un objeto que fue creado a partir de una clase
-    // This = Hace referencia al elemento padre que lo contiene. Al objeto con el que se esta trabajando
+    // This = Hace referencia al elemento padre que lo contiene. Al objeto con el que se esta trabajando. A la instancia actial
     constructor(name, age) {    // El constructor generalmente recibe los parametros que seran aplicados a cada objeto usando this
         console.log('Nuevo Usuario'); // Cuando se cree una instancia se va a ejecutar/inicializar los elementos dentro del contructor
         this.name = name;   // Los Parametros traidos por el constructor se aplican con .this al objeto creadon en ese momento
@@ -168,7 +168,39 @@ console.log(bebeloper1.uAge);   // Accedemos al get que nos muestra el atributo
 console.log(bebeloper1.uAge = 20);  // Al asignarle nuevo valor y modificarlo, accedemos al 'set' que permite hacer el cambio
 
 
-//! MODULOS
+
+const rectangulo = class R { }      // "Expresion de clase" Es cuando se esta definiendo una clase y esta se esta asignando a una constante.
+// const rectangulo = class { }     // Las Expresion de clase tambien pueden ser "Anonimas"
+class Rectangulo { }                // "Declaracion de clase" / Clases declaradas con Class no tienen hoisting a diferencia de function
+
+class chancho {
+    estado = 'feliz'                // Propiedades de la clase.           
+    #hambre = false                 // 'Propiedad privada' - Puede ser utilizada pero al momento de imprimir una calse no sera mostrada
+    static estatico = 42            // 'Propiedades estaticas' - pueden ser usadas sin haber instanciado alguna clase
+
+    constructor(color = 'rosa', hambre = false) {// Se ejecuta al instanciar una clase / "parametro defecto" que toma si no le es asignado
+        this.#hambre = hambre
+        console.log(`soy ${color}`);
+    }
+    hablar() {                      // Metodo - 
+        console.log(`soy un chancho ${this.estado} ${this.#hambre ? 'con mucha hambre' : 'satisfecho'}`); //'this' hace referencia a la instancia de la clase / El . es para acceder a sus propiedades
+    }
+    static comer() {                // Metodo Estatico - Metodo que solo se accede desde la clase, no necesita crear otra intancia de clase
+        console.log(this.propiedad, 'Estoy comiendo!'); // No puede acceder a las propiedades ya que estas pertenecen a las instancias
+        console.log(this.estatico); // Solo podemos acceder a las propiedades declaradas con la palabra 'static'
+    }
+}
+chancho.comer()                     // Podemos accedemos a los metodos estaticos sin la necesidad de generar intancias.
+const nose = new chancho()          // Toda clase declarada con 'New' ejecutara el Constructor
+nose.hablar()                       // Ejecutando el metodo de
+const verde = new chancho('verde')  // 'verde' sera lo que se enviara al contructor que es lo primero que se ejecuta al declarar con 'new'
+verde.hablar()
+const amarillo = new chancho('amarillo', true)
+amarillo.hablar()
+console.log(nose);
+
+
+// MODULOS
 // ECMA6 - Modulos: Manera de importar y acceder a la logica de un archivo para usarla en nuestro codigo.
 // Este sera el modulo, que se encontrara en un archivo './modulo.js' en otro lado de nuestra PC 
 const chanchosFelices = ['chancho1', 'chancho2', 'chancho3']
@@ -266,10 +298,62 @@ const regex = /(\d{4})-(\d{2})-(\d{2})/;    //\d{4} -> busca un string con exact
 const matchers = regex.exec('2022-01-01'); // Por lo que la primera expresion de regex tomara "2022" por cumplir con las especificaciones.
 console.table(matchers);
 
-// ECMA9 - Spread - Sirve para crear un nuevo objeto a partir de otros.
+//! ECMA9 - Spread - Sirve para concantenar Arrays y tambien puede crear un nuevo objeto a partir de otros.
+const fn = (a, b, c) => console.log(a + b + c)
+const arr = [1,2,3]
+// fn (arr[0], arr[1], arr[3])      Esta seria la forma de pasar cada uno de los argumentos del array como parametro de la funcion.
+fn (...arr)                         // El spread operator mapea los elementos del array y los asigna a cada parametro de la funcion
+
+const arr1 = [5,6]
+// const arr2 = arr.concat(arr1)    Forma de concatener varios arrays
+const arr2 = [...arr, ...arr1]      // El spread toma una copia de los valores de los arreglos, asignandolos a cada seccion 'concatenandolos'
+console.log(arr2);
+
+const obj1 = {a:1, b:2}
+const obj2 = {b:5, c:'chanchito feliz'}
+const obj3 = {...obj1}              // El spread en objetos nos permite crear una copia del objeto indicado y anadirla al nuevo
+obj1.a = 10                         // Si modificamos el valor de 'a' del obj1 este no modificara donde se haya usado el spread
+
+console.log(obj3, obj1);            // Vemos que el unico modificado es el obj1 ya que el obj3 tiene la copia del obj1 anterior
+const obj4 = {...obj1, ...obj2}     // Al concatenamos objetos con mismas propiedades, los de la derecha remplazaran a las de la izquierda. 
+console.log(obj4);                  // Las propiedades que quedan son el a del obj1, el b es remplazado el obj2 y el c del obj2
+
+const obj5 = {                      // Uso real que se le puede llegar a dar
+    ...obj1,
+    loading: true,
+    data: {
+        promp: 'lala',
+        animal: 'perrito'
+    }
+}
+
+//! Rest Operator - Misma sintaxis que el Spread Operator pero con uso diferente
+const rest = (a, b,  ...argumentos) => {/* los demas parametros despues de la 'a', se convertiran en un Array. Solo se usa de ultimo */
+    console.log(a, argumentos);
+}
+rest (1, 2, 3, 4, 5, 6)             // Devoldere 1 y 2 como parametro a y b. 3, 4 y 5 como el Array de argumentos.
+
+const obj = {
+    a: 1, b: 2, c: 3, d: 4
+}
+const {a, b, ...restobj} = obj      //! Obejec destructing = Permite solicitarle al objeto que propiedades queremos obtener de el
+console.log(a, b, restobj);         // El rest operator tambien puede servir para valores de objetos.      
+
+const arre = [1, 2, 3 , 4, 5]       // Tambien se puede hacer Destructurin con Arreglos
+// const [a, b, ...re] = arre
+// console.log(a,b,re);
+
+const useStates = () => ['valor', () => {}] // Tambien podemos devolver funciones y hacer destructuring de funciones
+const [valor, setValor] = useStates ()
+console.log(valor, setValor);
+
+
+
+
+
 const user1 = {username2: 'Aleclto7', age: 23, country: 'CO'}
 const {username2, ...values } = user1;    // Al haber sacado 'username' toma '...' para los valores restantes y en este caso los guarda dentro de 'values' 
-console.log(username);
+console.log(username2);
 console.log(values);
 
 // ECMA9 - Async y Async en ciclo for
@@ -293,8 +377,8 @@ const names1 = arrayOfNames(['Alexis', 'Azul', 'Burbuja']);
 console.log('After');
 
 //ECMA10 - flat - Permite aplanar los elementos de un array, eliminando arrays internos.
-const array = [1, 2, 3, 4, 5, [2, 3, 4, 5, [6, 7, 8]]];
-console.log(array.flat(3));
+const arrayN = [1, 2, 3, 4, 5, [2, 3, 4, 5, [6, 7, 8]]];
+console.log(arrayN.flat(3));
 
 //ECMA10 - flatMap - Permite aplanar los elementos de un array en un nivel, pasando una funcion que mapea cada elemento.
 const arrayMap = [1, 2, 3, 4, 5];
@@ -461,7 +545,7 @@ const square = (num) => {   // Se puede utilizar let var const, pero al ser una 
 const square = num => num * num; // Con solo un argumento podemos dejar de lado los parentesis, las llaves y el return. 
 
 // Operadores - Aritmeticos, Asignacion, Comparacion
-var a = 1;                                          // '=' Asigna un valor a la variable
+var h = 1;                                          // '=' Asigna un valor a la variable
 3 == '3';                                           // '==' Compara que los valores sean iguales
 3 === '3';                                          // '===' Compara que los valores y los tipos de datos sean iguales
 3 > 6;                                              // '>' Mayor que / >= Mayor o igual a
@@ -534,7 +618,7 @@ var miAuto = {
 };
 miAuto.marca;                                       // Acceder al valor de esa propiedad que tiene el objeto
 
-let arr = Object.value(obj);                        // Propiedad de Objetos que permiten convertir los valores en un array
+let array = Object.value(obj);                        // Propiedad de Objetos que permiten convertir los valores en un array
 
 // Objects "Funcion Constructora" - Sirve para crear varios objetos a partir de nueva informacion sin necesidad de hacerlo manualmente.
 function auto(marca, modelo, annio) {               // Funcion que tendra como parametro las propiedades que tendra cada objeto
