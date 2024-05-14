@@ -623,13 +623,13 @@ let array = Object.value(obj);                        // Propiedad de Objetos qu
 // Objects "Funcion Constructora" - Sirve para crear varios objetos a partir de nueva informacion sin necesidad de hacerlo manualmente.
 function auto(marca, modelo, annio) {               // Funcion que tendra como parametro las propiedades que tendra cada objeto
     this.marca = marca;                             // Como 'this' hace referencia al objeto que se esta creando en ese momento
-    this.modelo = modelo;                           // Todos los valores que pasemos por parametro en la funsion
+    this.modelo = modelo;                           //Todos los valores que pasemos por parametro en la funsion
     this.annio = annio;                             // Seran almacenados en las propiedades de ese objeto
 }
 var autoNuevo = new auto("Tesla", "Model 3", 2020)  // Especificar que se va a construir una nueva instancia, seguida la funcion y parametros
 
-// Metodos de Arrays - Existen metodos de Array para recorrer, devolver valores o un array con nuevos resultados
-var articulos = [                                   // Se puede crean un Array con objetos dentro
+//! Metodos de Arrays - Existen metodos de Array para recorrer, devolver valores o un array con nuevos resultados
+const art = [                                       // Se puede crean un Array con objetos dentro
     {nombre: "Bici", costo: 3000},
     {nombre: "Tv", costo: 2500},
     {nombre: "Libro", costo: 320},
@@ -638,35 +638,41 @@ var articulos = [                                   // Se puede crean un Array c
     {nombre: "Teclado", costo: 500},
     {nombre: "Audifonos", costo: 1700},
 ];
-// Filter - Filtra elementos especificos de un Array a travez de una funcion y los almacena en un nuevo array.
-var aFiltrados = articulos.filter(function(articulo) {// Creamo la variable que se convertira en el nuevo array de los elementos filtrados
-    return articulo.costo <= 500                    // La funcion retorna articulos con costo < o = a 500 que seran agregados al nuevo array
-});
-// Map - Mapea el array y trae todos los valores de la propiedad que estamos buscando Tambien almacena los elementos en un nuevo array
-var nomArt = articulos.map(function(articulo){      // Tambien se crea una variable que almacenara el nuevo array con los resultados.
-    return articulo.nombre                          // Retornara todos los nombres de los articulos que pasan por la funcion
-})
+// Filter - Filtra elementos de un Array, devuelve los que evaluen a 'True' y los almacena en forma de en un nuevo array.
+const aFiltrados = art.filter(art => (art.costo) <= 1000)  // Variable de resultado. Almacenaran elementos filtrados.
+// console.log(re);
+
+// Map - Mapea todos los elementos del Array y les aplica una funcion devolviendo el resultado de esa funcion en nuevo array.
+const nomArt = art.map((art => art.nombre))     // En este caso la funcion devolvera los nombre de los elementos del array
+
 // Find - Consiste en encontrar el primer elemento del array que cumpla con la condicion especificada, los demas no los verificara.
-var findArt = articulos.find(function(articulo){    // Variable que alamcenara funcion y se convertira en nuevo array de resultados
-    return articulo.nombre === "Laptop"             // En este caso find nos traera el articulo que cumpla con la condicion especificada
+const findArt = art.find(function(articulo){    // Variable que alamcenara funcion y se convertira en nuevo array de resultados
+    return articulo.nombre === "Laptop"         // En este caso find nos traera el articulo que cumpla con la condicion especificada
 })
 // ForEach - Filtra dicho Array sin modificarlo y retornara la informacion solicitada. Ejecuta la funcion una vez por cada elemento del array
-articulos.forEach(function(articulo){               // No almacena ningun dato en nuevo Array, retorna informacion solicitada
-    console.log(articulo.nombre);                   // Imprimira todos los valores de propiedad 'nombre' de articulos que pasen por la funcion
+art.forEach(function(articulo){                 // No almacena ningun dato en nuevo Array, retorna informacion solicitada
+    console.log(articulo.nombre);               // Imprimira todos los valores de propiedad 'nombre' de articulos que pasen por la funcion
 });
 // Some - Consiste validar si es Verdadero o falso la condicion que colocamos. Tambien crea un nuevo Array donde almacena resultado
-var artBar = articulos.some(function (articulo) {
+const artBar = art.some(function (articulo) {
     return articulo.costo <= 700;
 });
 
+// Reduce - Puede hacer casi cualquier cosa con los elementos de un arreglo. Tiene parametros especiales (acumulador, elemento)
+const re1 = art.reduce((max, art) => max + art.costo, 0)  // Suma el acumulador con el costo del art iterado. El 0 es el valor inicial del acc
 
-function presentacion(name, lastname, nickname) {
-    console.log("Mi nombre es "  + name + " " + lastname + ", pero prefiero que me digas " + nickname + ".");
+// Se puede usar reduce a la par de Math.max para encontrar el numero maximo dentro del un array
+const re2 = art.reduce((max, item) => Math.max(max, item.costo), -Infinity) // -Infinity - valor especial que representa el número más negativo posible, garantizando que en primera iteración cualquier número positivo o negativo se considere como candidato a ser el máximo.
+
+const re3 = art.reduce((max, item) =>           // Podemos imprimir los nombres de los elementos.
+    `${max === '' ? '' : `${max}, `} ${item.nombre}`, '')   // Usamos el Operador Terniario y template string para poner o no la , al inicio 
+
+const re4 = art.reduce((max, item) => {         // Podemos Filtra y mapear datos a la vez
+    if (item.costo > 2000) {                    // Condicional que no tome en cuenta elementos mas costo que 2000. Devolviendo mas baratos.
+        return(max)
     }
-
-
-
-
+    return(max.concat(item))
+}, [])
 
 // ---------------------------------------------------------------------------------------------------------------------------------------
 // Maneras de Leer HTML desde el JavaScript 
@@ -817,6 +823,10 @@ request.onload = function () {
 
     printName(objectJson)
 };
+
+// API Fetch - Permite obtener datos desde un URL
+
+
 
 // Fetch-Them - Traer info a travez de una API/Objeto JSON
 fetch("https://rickandmortyapi.com/api/character")  // Capturar informacion de una API "URL de API"
