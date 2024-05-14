@@ -824,8 +824,41 @@ request.onload = function () {
     printName(objectJson)
 };
 
-// API Fetch - Permite obtener datos desde un URL
+//! API Fetch - Permite obtener datos desde un URL. Podemos usarla con Async y Await o con promesas antiguas '.then'
+const ur1 = 'https://rickandmortyapi.com/api/character'
+// Podemos visualizar los datos de la peticion a traevez del apartado de Network en la consola de nuestro navegador 
+fetch(ur1, {        // La funcion de fetch recibe 2 argumentos - la URL y el objeto literal que sirve para configurar nuestra peticion
+    method: 'POST', // GET, POST, PUT, PATCH, DELETE / Post - para crear recursos dentro de una API Rest. Tipos de peticiones
+    headers: {      // Por donde se le proporciona informacion al servido de quienes somo y el tipo de dato que vamos a enviar
+        'Content-type' : 'application/json',                // Indicarle al servidor que le estamos enviando datos en formato JSON
+        'Authorization' : 'Bearer tokendeautorizacion'      // Llave de autorizacion del usuario.
+    },
+    body: JSON.stringify({      // Contendra los datos que queremos enviarle al servidor. Necesariamente tiene que ser enviados como string
+        name: 'Chancho feliz',
+        website: 'google.com'
+    })
+})
+    .then((response) => response.json)  // Then recibe lo que envia la URL. Trae el metodo json y usamos otro them para acceder a sus datos
+    .then(data => console.log(data))    // Accedemos a la data de el metodo json para que podamos utilizarla
 
+// Al ser Fetch una funcion que retorna una Promesa, veremos que esta logica tambien podemos hacerla con Async y Await,
+//! Mayormente se usa Async y Await. Solo en casos particulares como cuando se trabaja con codigo estilo funcional deberiamos optar por .then
+const fcn = async () => {
+    const response = await fetch(ur1, {
+        method: 'POST',
+        headers: {
+            'Content-type' : 'application/json',
+            'Authorization' : 'Bearer tokendeautorizacion'
+        },
+        body: JSON.stringify({
+            name: 'Chancho feliz',
+            website: 'google.com'
+        })
+    })
+    const data = response.json()
+    console.log(data);
+}
+fcn()
 
 
 // Fetch-Them - Traer info a travez de una API/Objeto JSON
