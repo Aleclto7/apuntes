@@ -44,24 +44,6 @@ div {                               /* 'Tipo' Se usa el nombre de la etiqueta */
     border-color: transparent;      /* Coloca border trasparentes, o botones tambien */
 }
 
-
-.container {
-    /* Grid = herramientea que permite hacer rejillas (grids) conformada por filas y columnas. Tambien tener en cuenta padres e hijos */
-    display: grid;                          /* Indicar que trabajaremos con Grid */
-    width: 400px;
-    height: 400px;
-    grid-template-columns: 200px 200px;     /* Crear columnas, seguido de tamaños de columnas a crear */
-    grid-template-columns: 1fr 1fr;         /* fr - Divide el tamaño del grid en las columnas que pongamos */
-    grid-template-columns: repeat(2, 1fr 1fr); /* Crear columnas colocando (cantidad y tamano que tendran) */
-    grid-template-columns: repeat(auto-fill , 240px); /* Llena el espacio con todas las columnas de 240px que quepan */
-    grid-template-rows: 1fr 1fr;            /* Colocar filas / 1fr = 1 fraccion o columna */
-    }
-.item:nth-child(1) {
-    grid-column: 2/3;                       /* Posicionar en columna, entre las lineas 1 y 2 */
-    grid-row: 2/3;                          /* Posicionar en Fila, entre las lineas 2 y 3*/
-}
-
-
 /* Pseudoclases ':' -> Define estilos de un estado (Acciones del usuario) especial de un elemento */
 .main-nav_item a:hover {            /* :hover -> Pasar el click por encima / :active -> cuando demos click */
     background-color: white;
@@ -185,7 +167,6 @@ div {
 }
 .box1 { order: 2;}                  /* Permite colocar orden para mostrar (primero al ultimo) los contenedores (hijos) */
 .box2 { color: white;}            /* Todos los contenedores que no coloquemos orden se posicionaran de primero */
-
 
 /* CSS Grid: Alinear contenedores de manera tridimensional (Filas y columnas en conjunto) 'https://www.youtube.com/watch?v=iTjkiI8QQsM'*/
 .container {
